@@ -1,1 +1,32 @@
-key: val
+COLUMNS:
+  State: int64
+  BankState: int64
+  ApprovalFY: int64
+  Term: int64
+  NoEmp: int64
+  CreateJob: int64
+  RetainedJob: int64
+  UrbanRural: int64
+  RevLineCr: int64
+  LowDoc: int64
+  DisbursementGross: float64
+  BalanceGross: float64
+  ChgOffPrinGr: float64
+  GrAppv: float64
+  SBA_Appv: float64
+  IndustryCode: int64
+  NewBusiness: int64
+  IsFranchise: int64
+  DaysToDisbursement: int64
+  DisbursementMonth: int64
+  DisbursementYear: int64
+  StateSame: int32
+  SBA_AppvPercent: float64
+  AppvDisbursed: int32
+  RealEstate: int32
+  GreatRecession: int32
+  Default: int32
+
+
+TARGET_COLUMN:
+  name: Default

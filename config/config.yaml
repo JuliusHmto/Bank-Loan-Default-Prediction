@@ -3,6 +3,11 @@ artifacts_root: artifacts
 
 data_ingestion:
   root_dir: artifacts/data_ingestion
-  source_URL: https://github.com/JuliusHmto/data-sources/raw/refs/heads/main/SBAnational.zip
+  source_URL: https://github.com/JuliusHmto/data-sources/releases/download/v1.0.0/SBAnational.zip
   local_data_file: artifacts/data_ingestion/data.zip
   unzip_dir: artifacts/data_ingestion
+
+data_validation:
+  root_dir: artifacts/data_validation
+  unzip_data_dir: artifacts/data_ingestion/SBAnational.csv
+  STATUS_FILE: artifacts/data_validation/status.txt
