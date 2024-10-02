@@ -25,8 +25,42 @@ COLUMNS:
   AppvDisbursed: int32
   RealEstate: int32
   GreatRecession: int32
-  Default: int32
 
 
 TARGET_COLUMN:
-  name: Default
+  Default: int32
+
+
+# COLUMNS:
+#   LoanNr_ChkDgt: int64,
+#   Name: object,
+#   City: object,
+#   State: object,
+#   Zip: int64,
+#   Bank: object,
+#   BankState: object,
+#   NAICS: int64,
+#   ApprovalDate: object,
+#   ApprovalFY: object,   
+#   Term: int64,
+#   NoEmp: int64,
+#   NewExist: float64,
+#   CreateJob: int64,
+#   RetainedJob: int64,
+#   FranchiseCode: int64,
+#   UrbanRural: int64,
+#   RevLineCr: object, 
+#   LowDoc: object,    
+#   ChgOffDate: object,  
+#   DisbursementDate: object,  
+#   DisbursementGross: object,  
+#   BalanceGross: object,  
+#   MIS_Status: object,
+#   ChgOffPrinGr: object,
+#   GrAppv: object,      
+#   SBA_Appv: object     
+
+
+# TARGET_COLUMN:
+#   name: MIS_Status
+
