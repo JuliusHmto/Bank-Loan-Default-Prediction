@@ -205,16 +205,11 @@ class DataTransformation:
         X_scaled = scaler.fit_transform(X)
 
         # first split: train & pretest (split for validation & test)
-        X_train, X_pretest, y_train, y_pretest = train_test_split(X_scaled, y, test_size=0.3, random_state=42)
-
-        # second split: validation & test (validation for hyperparameter tuning)
-        X_val, X_test, y_val, y_test = train_test_split(X_pretest, y_pretest, test_size=0.50, random_state=42)
+        X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.3, random_state=42)
 
         # Save the train and test sets to CSV files
         pd.DataFrame(X_train).to_csv(os.path.join(self.config.root_dir, "X_train.csv"), index=False)
         pd.DataFrame(y_train).to_csv(os.path.join(self.config.root_dir, "y_train.csv"), index=False)
-        pd.DataFrame(X_val).to_csv(os.path.join(self.config.root_dir, "X_val.csv"), index=False)
-        pd.DataFrame(y_val).to_csv(os.path.join(self.config.root_dir, "y_val.csv"), index=False)
         pd.DataFrame(X_test).to_csv(os.path.join(self.config.root_dir, "X_test.csv"), index=False)
         pd.DataFrame(y_test).to_csv(os.path.join(self.config.root_dir, "y_test.csv"), index=False)
 
@@ -222,10 +217,8 @@ class DataTransformation:
        # Log detailed information about splits
         logger.info("Data successfully split into training, validation, and test sets.")
         logger.info(f"Training set X shape: {X_train.shape}, y shape: {y_train.shape}")
-        logger.info(f"Validation set X shape: {X_val.shape}, y shape: {y_val.shape}")
         logger.info(f"Test set X shape: {X_test.shape}, y shape: {y_test.shape}")
 
         # Print summary of the splits
         print(f"Training data shape: X_train: {X_train.shape}, y_train: {y_train.shape}")
-        print(f"Validation data shape: X_val: {X_val.shape}, y_val: {y_val.shape}")
         print(f"Test data shape: X_test: {X_test.shape}, y_test: {y_test.shape}")
