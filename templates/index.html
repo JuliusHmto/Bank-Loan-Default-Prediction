@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Web App</title>
+        <link rel="icon" type="image/x-icon" href="static/assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="static/css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="/">Home</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+<!--                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>-->
+<!--                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html">About</a></li>-->
+<!--                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="post.html">Sample Post</a></li>-->
+<!--                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="contact.html">Contact</a></li>-->
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('static/assets/img/wine.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>Bank Loan Default Prediction</h1>
+                            <span class="subheading">A Bank Loan Default Checking Web App</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+
+        <!-- Main Content-->
+        <div class="container px-4 px-lg-5">
+
+           <!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Form-v9 by Colorlib</title>
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<!-- Font-->
+	<link rel="stylesheet" type="text/css" href="static/css2/nunito-font.css">
+	<!-- Main Style Css -->
+    <link rel="stylesheet" href="static/css2/style.css"/>
+</head>
+<body class="form-v9">
+	<div class="page-content">
+		<div class="form-v9-content" style="background-image: url('static/assets/img/form-v9.jpg')">
+			<form class="form-detail" action="/predict" method="post">
+				<h2>Please Fill The Information</h2>
+				<div class="form-row-total">
+
+                    <div class="form-row">
+                        <label for="LoanNr_ChkDgt"> Loan Number:</label>
+                        <input type="text" name="LoanNr_ChkDgt" id="LoanNr_ChkDgt" class="input-text" placeholder="Loan Number" required>
+                    </div>
+                
+                    <div class="form-row">
+                        <label for="Name"> Name:</label>
+                        <input type="text" name="Name" id="Name" class="input-text" placeholder="Name" required>
+                    </div>
+                
+                </div>
+
+                <div class="form-row-total">
+
+                    <div class="form-row">
+                        <label for="City"> City:</label>
+                        <input type="text" name="City" id="City" class="input-text" placeholder="City" required>
+                    </div>
+                
+                    <div class="form-row">
+                        <label for="State"> State:</label>
+                        <input type="text" name="State" id="State" class="input-text" placeholder="State" required>
+                    </div>
+
+                </div>
+
+                <div class="form-row-total">
+
+                    <div class="form-row">
+                        <label for="Zip"> Zip Code:</label>
+                        <input type="text" name="Zip" id="Zip" class="input-text" placeholder="Zip Code" required>
+                    </div>
+                
+                    <div class="form-row">
+                        <label for="Bank"> Bank:</label>
+                        <input type="text" name="Bank" id="Bank" class="input-text" placeholder="Bank" required>
+                    </div>
+
+                </div>
+                
+                <div class="form-row-total">
+
+                    <div class="form-row">
+                        <label for="BankState"> Bank State:</label>
+                        <input type="text" name="BankState" id="BankState" class="input-text" placeholder="Bank State" required>
+                    </div>
+                
+                    <div class="form-row">
+                        <label for="NAICS"> NAICS:</label>
+                        <input type="text" name="NAICS" id="NAICS" class="input-text" placeholder="NAICS" required>
+                    </div>
+                
+                </div>
+
+                <div class="form-row-total">
+                
+                    <div class="form-row">
+                        <label for="ApprovalDate"> Approval Date:</label>
+                        <input type="text" name="ApprovalDate" id="ApprovalDate" class="input-text" placeholder="Approval Date" required>
+                    </div>
+                
+                    <div class="form-row">
+                        <label for="ApprovalFY"> Approval FY:</label>
+                        <input type="text" name="ApprovalFY" id="ApprovalFY" class="input-text" placeholder="Approval FY" required>
+                    </div>
+                
+                </div>
+
+                <div class="form-row-total">
+                
+                    <div class="form-row">
+                        <label for="Term"> Term:</label>
+                        <input type="text" name="Term" id="Term" class="input-text" placeholder="Term" required>
+                    </div>
+                
+                    <div class="form-row">
+                        <label for="NoEmp"> Number of Employees:</label>
+                        <input type="text" name="NoEmp" id="NoEmp" class="input-text" placeholder="Number of Employees" required>
+                    </div>
+                
+                </div>
+                
+                <div class="form-row-total">
+
+                    <div class="form-row">
+                        <label for="NewExist"> New or Existing:</label>
+                        <input type="text" name="NewExist" id="NewExist" class="input-text" placeholder="New or Existing" required>
+                    </div>
+                
+                    <div class="form-row">
+                        <label for="CreateJob"> Jobs Created:</label>
+                        <input type="text" name="CreateJob" id="CreateJob" class="input-text" placeholder="Jobs Created" required>
+                    </div>
+
+                </div>
+
+                <div class="form-row-total">                
+                
+                    <div class="form-row">
+                        <label for="RetainedJob"> Jobs Retained:</label>
+                        <input type="text" name="RetainedJob" id="RetainedJob" class="input-text" placeholder="Jobs Retained" required>
+                    </div>
+                
+                    <div class="form-row">
+                        <label for="FranchiseCode"> Franchise Code:</label>
+                        <input type="text" name="FranchiseCode" id="FranchiseCode" class="input-text" placeholder="Franchise Code" required>
+                    </div>
+                
+                </div>
+                
+                <div class="form-row-total">    
+
+                    <div class="form-row">
+                        <label for="UrbanRural"> Urban or Rural:</label>
+                        <input type="text" name="UrbanRural" id="UrbanRural" class="input-text" placeholder="Urban or Rural" required>
+                    </div>
+                
+                    <div class="form-row">
+                        <label for="RevLineCr"> Rev Line Credit:</label>
+                        <input type="text" name="RevLineCr" id="RevLineCr" class="input-text" placeholder="Rev Line Credit" required>
+                    </div>
+                
+                </div>
+
+                <div class="form-row-total">
+                
+                    <div class="form-row">
+                        <label for="LowDoc"> Low Doc:</label>
+                        <input type="text" name="LowDoc" id="LowDoc" class="input-text" placeholder="Low Doc" required>
+                    </div>
+                
+                    <div class="form-row">
+                        <label for="ChgOffDate"> Charge Off Date:</label>
+                        <input type="text" name="ChgOffDate" id="ChgOffDate" class="input-text" placeholder="Charge Off Date" required>
+                    </div>
+
+                </div>
+
+                <div class="form-row-total">
+                
+                    <div class="form-row">
+                        <label for="DisbursementDate"> Disbursement Date:</label>
+                        <input type="text" name="DisbursementDate" id="DisbursementDate" class="input-text" placeholder="Disbursement Date" required>
+                    </div>
+                
+                    <div class="form-row">
+                        <label for="DisbursementGross"> Disbursement Gross:</label>
+                        <input type="text" name="DisbursementGross" id="DisbursementGross" class="input-text" placeholder="Disbursement Gross" required>
+                    </div>
+
+                </div>
+                
+                <div class="form-row-total">
+
+                    <div class="form-row">
+                        <label for="BalanceGross"> Balance Gross:</label>
+                        <input type="text" name="BalanceGross" id="BalanceGross" class="input-text" placeholder="Balance Gross" required>
+                    </div>
+                
+                    <div class="form-row">
+                        <label for="ChgOffPrinGr"> Charge Off Principal:</label>
+                        <input type="text" name="ChgOffPrinGr" id="ChgOffPrinGr" class="input-text" placeholder="Charge Off Principal" required>
+                    </div>
+                
+                </div>
+
+                <div class="form-row-total">
+                
+                    <div class="form-row">
+                        <label for="GrAppv"> Gross Approval:</label>
+                        <input type="text" name="GrAppv" id="GrAppv" class="input-text" placeholder="Gross Approval" required>
+                    </div>
+                
+                    <div class="form-row">
+                        <label for="SBA_Appv"> SBA Approval:</label>
+                        <input type="text" name="SBA_Appv" id="SBA_Appv" class="input-text" placeholder="SBA Approval" required>
+                    </div>
+                
+                </div>
+                
+
+				<div class="form-row-last">
+					<input type="submit" name="register" class="register" value="Predict">
+				</div>
+			</form>
+		</div>
+	</div>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
+
+        </div>
+
+
+        <!-- Footer-->
+        <footer class="border-top">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <ul class="list-inline text-center">
+                            <li class="list-inline-item">
+                                <a href="https://www.linkedin.com/in/boktiarahmed73/">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://www.youtube.com/dswithbappy">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-youtube fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://github.com/entbappy">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="small text-center text-muted fst-italic"></div>
+                        <div class="small text-center text-muted fst-italic"></div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="static/js/scripts.js"></script>
+    </body>
+</html>
