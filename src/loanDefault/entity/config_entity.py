@@ -22,6 +22,7 @@ class DataValidationConfig:
 class DataTransformationConfig:
     root_dir: Path
     data_path: Path
+    train_columns: Path
 
 
 @dataclass(frozen=True)

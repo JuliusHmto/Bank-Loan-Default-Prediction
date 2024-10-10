@@ -1,0 +1,15 @@
+artifact_uri: file:///E:/dibimbing/Portfolio/Bank-Loan-Default-Prediction/mlruns/0/400fb85794bc46118911f3b64247ff52/artifacts
+end_time: 1728479891469
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 400fb85794bc46118911f3b64247ff52
+run_name: omniscient-rat-949
+run_uuid: 400fb85794bc46118911f3b64247ff52
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728479884243
+status: 3
+tags: []
+user_id: juliu

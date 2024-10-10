@@ -2,8 +2,9 @@ from flask import Flask, render_template, request
 import os 
 import numpy as np
 import pandas as pd
+from src.loanDefault.config.configuration import ConfigurationManager
+from src.loanDefault.components.data_transformation import DataTransformation
 from src.loanDefault.pipeline.prediction import PredictionPipeline
-
 
 app = Flask(__name__) # initializing a flask app
 
@@ -35,7 +36,7 @@ def index():
             ApprovalFY = str(request.form['ApprovalFY'])
             Term = int(request.form['Term'])
             NoEmp = int(request.form['NoEmp'])
-            NewExist = float(request.form['NewExist'])
+            NewExist = int(float(request.form['NewExist']))
             CreateJob = int(request.form['CreateJob'])
             RetainedJob = int(request.form['RetainedJob'])
             FranchiseCode = int(request.form['FranchiseCode'])
@@ -55,9 +56,16 @@ def index():
             data = [LoanNr_ChkDgt, Name, City, State, Zip, Bank, BankState, NAICS, ApprovalDate, ApprovalFY, Term, NoEmp, NewExist, CreateJob, RetainedJob,
                     FranchiseCode, UrbanRural, RevLineCr, LowDoc, ChgOffDate, DisbursementDate, DisbursementGross, BalanceGross, ChgOffPrinGr, GrAppv, SBA_Appv]
             data = np.array(data).reshape(1, 26)
+
+            config = ConfigurationManager()
+            data_transformation_config = config.get_data_transformation_config()
+            data_transformation = DataTransformation(config=data_transformation_config)
+            
+            clean_data = data_transformation.clean_and_preprocess_data(data)
+            transformed_data = data_transformation.transform_data(clean_data, True)
             
             obj = PredictionPipeline()
-            predict = obj.predict(data)
+            predict = obj.predict(transformed_data)
 
             return render_template('results.html', prediction = str(predict))
 
@@ -70,5 +78,5 @@ def index():
 
 
 if __name__ == "__main__":
-	# app.run(host="0.0.0.0", port = 8080, debug=True)
-	app.run(host="0.0.0.0", port = 8080)
+	app.run(host="0.0.0.0", port = 8080, debug=True)
+	# app.run(host="0.0.0.0", port = 8080)

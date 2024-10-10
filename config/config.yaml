@@ -17,6 +17,7 @@ data_validation:
 data_transformation:
   root_dir: artifacts/data_transformation
   data_path: artifacts/data_ingestion/SBAnational.csv
+  train_columns: artifacts/data_transformation/train_columns.csv
 
 
 model_trainer:

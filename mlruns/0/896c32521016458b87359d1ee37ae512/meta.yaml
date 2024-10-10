@@ -1,0 +1,15 @@
+artifact_uri: file:///E:/dibimbing/Portfolio/Bank-Loan-Default-Prediction/mlruns/0/896c32521016458b87359d1ee37ae512/artifacts
+end_time: 1728531718490
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 896c32521016458b87359d1ee37ae512
+run_name: clumsy-flea-622
+run_uuid: 896c32521016458b87359d1ee37ae512
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728531712857
+status: 3
+tags: []
+user_id: juliu

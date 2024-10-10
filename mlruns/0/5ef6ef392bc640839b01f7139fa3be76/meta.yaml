@@ -1,0 +1,15 @@
+artifact_uri: file:///E:/dibimbing/Portfolio/Bank-Loan-Default-Prediction/mlruns/0/5ef6ef392bc640839b01f7139fa3be76/artifacts
+end_time: 1728478530475
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 5ef6ef392bc640839b01f7139fa3be76
+run_name: righteous-mule-582
+run_uuid: 5ef6ef392bc640839b01f7139fa3be76
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728478521810
+status: 3
+tags: []
+user_id: juliu

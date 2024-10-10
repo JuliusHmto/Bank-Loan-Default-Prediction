@@ -11,12 +11,40 @@ class DataTransformation:
     def __init__(self, config: DataTransformationConfig):
         self.config = config
 
-    def clean_and_preprocess_data(self):
-        # Read the CSV file
+    def get_data_from_input(self, data):
+        column_names = ['LoanNr_ChkDgt', 'Name', 'City', 'State', 'Zip', 'Bank', 
+                        'BankState', 'NAICS', 'ApprovalDate', 'ApprovalFY', 
+                        'Term', 'NoEmp', 'NewExist', 'CreateJob', 'RetainedJob',
+                        'FranchiseCode', 'UrbanRural', 'RevLineCr', 'LowDoc', 
+                        'ChgOffDate', 'DisbursementDate', 'DisbursementGross', 
+                        'BalanceGross', 'ChgOffPrinGr', 'GrAppv', 'SBA_Appv']
+
+        loans_predict = pd.DataFrame(data, columns=column_names)
+
+        return loans_predict
+
+    def get_data_from_csv(self):
         loans = pd.read_csv(self.config.data_path, low_memory=False)
 
+        return loans
+
+    def clean_and_preprocess_data(self, data=None):
+        # Check if the data is provided as input or from CSV
+        if isinstance(data, pd.DataFrame):
+            loans = data  # Use the DataFrame directly if provided
+        elif data is None:
+            loans = self.get_data_from_csv()  # Load from CSV if no data provided
+        else:
+            # If data is not a DataFrame or None, try to create a DataFrame from it
+            loans = self.get_data_from_input(data)
+
         # Drop null values from specified columns
-        loans.dropna(subset=['Name', 'City', 'State', 'BankState', 'NewExist', 'RevLineCr', 'LowDoc', 'DisbursementDate', 'MIS_Status'], inplace=True)
+        loans.dropna(subset=['Name', 'City', 'State', 'BankState', 'NewExist', 'RevLineCr', 'LowDoc', 'DisbursementDate'], inplace=True)
+        
+        if isinstance(data, pd.DataFrame) or data is None:
+            loans.dropna(subset=['MIS_Status'], inplace=True)
+        else:
+            print()
 
         # Define a function to clean the string from integer data
         def clean_data_str(value):
@@ -29,7 +57,7 @@ class DataTransformation:
         # Remove '$', commas, and extra spaces from records in columns with dollar values that should be floats
         loans[['DisbursementGross', 'BalanceGross', 'ChgOffPrinGr', 'GrAppv', 'SBA_Appv']] = \
         loans[['DisbursementGross', 'BalanceGross', 'ChgOffPrinGr', 'GrAppv', 'SBA_Appv']].apply(lambda x: x.str.replace('$', '').str.replace(',', '').str.strip())
-        
+
         # Reconfigure remaining data into appropriate data types
         loans = loans.astype({
             'Zip': 'str',
@@ -90,6 +118,8 @@ class DataTransformation:
         loans['RevLineCr'] = loans['RevLineCr'].replace(['N', 'Y'], [0, 1])
         loans['LowDoc'] = loans['LowDoc'].replace(['N', 'Y'], [0, 1])
 
+        loans['FranchiseCode'] = pd.to_numeric(loans['FranchiseCode'], errors='coerce')
+
         # Create IsFranchise flag
         loans.loc[loans['FranchiseCode'] <= 1, 'IsFranchise'] = 0
         loans.loc[loans['FranchiseCode'] > 1, 'IsFranchise'] = 1
@@ -112,7 +142,10 @@ class DataTransformation:
         loans['StateSame'] = np.where(loans['State'] == loans['BankState'], 1, 0)
         loans['SBA_AppvPercent'] = loans['SBA_Appv'] / loans['GrAppv']
         loans['AppvDisbursed'] = np.where(loans['DisbursementGross'] == loans['GrAppv'], 1, 0)
+
+        loans['Term'] = pd.to_numeric(loans['Term'], errors='coerce')
         loans['RealEstate'] = np.where(loans['Term'] >= 240, 1, 0)
+
         loans['GreatRecession'] = np.where(
             (loans['DisbursementYear'] == 2007) & (loans['DisbursementMonth'] >= 12) |
             (loans['DisbursementYear'] == 2008) |
@@ -123,11 +156,17 @@ class DataTransformation:
             'IsFranchise': 'int64',
             'NewBusiness': 'int64',
             'RevLineCr': 'int64',
-            'LowDoc': 'int64'
+            'LowDoc': 'int64',
+            'RetainedJob': 'int64',
+            'CreateJob': 'int64',
+            'NoEmp': 'int64',
         })
 
         # Create Default column based on MIS_Status
-        loans['Default'] = np.where(loans['MIS_Status'] == 'P I F', 0, 1)
+        if isinstance(data, pd.DataFrame) or data is None:
+            loans['Default'] = np.where(loans['MIS_Status'] == 'P I F', 0, 1)
+        else:
+            print()
 
         state_mapping = {state: idx for idx, state in enumerate([
             'IN', 'OK', 'FL', 'CT', 'NJ', 'NC', 'IL', 'RI', 'TX', 'VA',
@@ -145,9 +184,14 @@ class DataTransformation:
         ])}
 
         # Drop unwanted columns
-        loans.drop(columns=['LoanNr_ChkDgt', 'ChgOffDate', 'Name', 'City', 'Zip', 'Bank', 'NAICS', 'MIS_Status', 'NewExist', 'FranchiseCode',
+        loans.drop(columns=['LoanNr_ChkDgt', 'ChgOffDate', 'Name', 'City', 'Zip', 'Bank', 'NAICS', 'NewExist', 'FranchiseCode',
                       'ApprovalDate', 'DisbursementDate', 'Industry'], inplace=True)
         
+        if isinstance(data, pd.DataFrame) or data is None:
+            loans.drop(columns=['MIS_Status'], inplace=True)
+        else:
+            print()
+
         # Encoding like base model encoding
         loans['State'] = loans['State'].map(state_mapping)
         loans['BankState'] = loans['BankState'].map(bank_state_mapping)
@@ -163,33 +207,58 @@ class DataTransformation:
         loans.dropna(subset=['DaysToDisbursement'], inplace=True)
 
         # Return the cleaned and preprocessed loans dataframe
+
+        logger.info("clean_and_preprocess_data SUCCESS!!")
         return loans
     
 
     
-    def transform_data(self, loans):
+    def transform_data(self, loans, isPredict=False):
         loans_tf = loans
 
+        # Apply log1p transformation to the selected features
         features_transform = ['DaysToDisbursement', 'DisbursementGross',
                             'RetainedJob', 'CreateJob', 'NoEmp', 'Term']
-        
         loans_tf[features_transform] = np.log1p(loans_tf[features_transform])
 
-        loans_tf = pd.get_dummies(loans_tf)
+        # Create dummies for the categorical fields in the prediction data
+        if isPredict:
+            # Generate one-hot encoded dummies for the test data
+            loans_tf = pd.get_dummies(loans_tf, columns=['State', 'BankState', 'RevLineCr', 'LowDoc'])
 
-        loans_tf.dropna(subset=['DaysToDisbursement'], inplace=True)
+            # Load training columns to ensure consistent structure
+            train_columns = pd.read_csv(self.config.train_columns, header=None)[0].tolist()
 
-        # Replace infinite values with NaN
-        loans_tf.replace([np.inf, -np.inf], np.nan, inplace=True)
+            # Reindex to align with training columns, filling missing columns with 0
+            loans_tf = loans_tf.reindex(columns=train_columns, fill_value=0)
+            loans_tf.drop(loans_tf.columns[0], axis=1, inplace=True)
+            loans_tf.drop(columns='Default', inplace=True)
+            loans_tf.replace(True, 1, inplace=True)
+            loans_tf = loans_tf.astype(float)
 
-        # Optionally drop rows with NaN values
-        loans_tf.dropna(inplace=True)
+            # Renaming columns to just numbers
+            loans_tf.columns = [i for i, _ in enumerate(loans_tf.columns)]
 
-        # One-Hot Encoding for non ranking feature fields
-        loans_tf = pd.get_dummies(loans_tf, columns=['State']).astype(int)
-        loans_tf = pd.get_dummies(loans_tf, columns=['BankState']).astype(int)
-        loans_tf = pd.get_dummies(loans_tf, columns=['RevLineCr']).astype(int)
-        loans_tf = pd.get_dummies(loans_tf, columns=['LowDoc']).astype(int)
+            pd.DataFrame(loans_tf).to_csv(os.path.join(self.config.root_dir, "test_columns.csv"), index=False)
+        else:
+            # Apply dummies for the training data
+            loans_tf = pd.get_dummies(loans_tf, columns=['State', 'BankState', 'RevLineCr', 'LowDoc'])
+
+            # Drop rows with NaN in 'DaysToDisbursement'
+            loans_tf.dropna(subset=['DaysToDisbursement'], inplace=True)
+
+            # Replace infinite values with NaN
+            loans_tf.replace([np.inf, -np.inf], np.nan, inplace=True)
+
+            # Optionally drop rows with NaN values
+            loans_tf.dropna(inplace=True)
+
+            # Save the training columns to CSV for future use
+            pd.DataFrame(loans_tf.columns).to_csv(os.path.join(self.config.root_dir, "train_columns.csv"), index=False)
+
+        logger.info(loans_tf.shape)
+        logger.info("transform_data SUCCESS!!")
+
 
         return loans_tf
 
@@ -203,6 +272,8 @@ class DataTransformation:
         # Scale predictors for easier training
         scaler = preprocessing.StandardScaler()
         X_scaled = scaler.fit_transform(X)
+        
+        pd.DataFrame(X_scaled).to_csv(os.path.join(self.config.root_dir, "X_scaled.csv"), index=False)
 
         # first split: train & pretest (split for validation & test)
         X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.3, random_state=42)

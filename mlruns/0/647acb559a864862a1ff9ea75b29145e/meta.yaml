@@ -1,0 +1,15 @@
+artifact_uri: file:///E:/dibimbing/Portfolio/Bank-Loan-Default-Prediction/mlruns/0/647acb559a864862a1ff9ea75b29145e/artifacts
+end_time: 1728530316044
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 647acb559a864862a1ff9ea75b29145e
+run_name: crawling-snail-631
+run_uuid: 647acb559a864862a1ff9ea75b29145e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728530309531
+status: 3
+tags: []
+user_id: juliu

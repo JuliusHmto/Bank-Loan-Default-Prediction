@@ -1,0 +1,15 @@
+artifact_uri: file:///E:/dibimbing/Portfolio/Bank-Loan-Default-Prediction/mlruns/0/2d74630d8af14c3fbfc279e1b92fadf4/artifacts
+end_time: 1728533461147
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 2d74630d8af14c3fbfc279e1b92fadf4
+run_name: stately-jay-128
+run_uuid: 2d74630d8af14c3fbfc279e1b92fadf4
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728533455076
+status: 3
+tags: []
+user_id: juliu
