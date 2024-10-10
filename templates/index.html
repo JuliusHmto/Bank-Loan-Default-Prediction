@@ -20,6 +20,7 @@
         <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="/">Home</a>
+                <a class="navbar-brand" href="/train">Train Model</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
@@ -35,13 +36,14 @@
             </div>
         </nav>
         <!-- Page Header-->
-        <header class="masthead" style="background-image: url('static/assets/img/wine.jpg')">
+        <header class="masthead" style="background-color: lightblue">
             <div class="container position-relative px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="site-heading">
                             <h1>Bank Loan Default Prediction</h1>
                             <span class="subheading">A Bank Loan Default Checking Web App</span>
+                            <a href="#formSection" class="btn btn-primary" style="margin-top: 20px;">Fill Information</a>
                         </div>
                     </div>
                 </div>
@@ -64,11 +66,11 @@
 	<!-- Main Style Css -->
     <link rel="stylesheet" href="static/css2/style.css"/>
 </head>
-<body class="form-v9">
-	<div class="page-content">
+<body class="form-v9" style="background-color: #ccc">
+	<div class="page-content" style="background-color: #ccc">
 		<div class="form-v9-content">
-			<form class="form-detail" action="/predict" method="post">
-				<h2>Please Fill The Information</h2>
+			<form class="form-detail" action="/predict" method="post" id="formSection">
+				<h2 style="color: #121212;">Please Fill The Information</h2>
 				<div class="form-row-total">
 
                     <div class="form-row">

@@ -1,0 +1,15 @@
+artifact_uri: file:///E:/dibimbing/Portfolio/Bank-Loan-Default-Prediction/mlruns/0/9505794eb6f64a699a670716d6658989/artifacts
+end_time: 1728566881244
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 9505794eb6f64a699a670716d6658989
+run_name: bald-worm-582
+run_uuid: 9505794eb6f64a699a670716d6658989
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728566873943
+status: 3
+tags: []
+user_id: juliu

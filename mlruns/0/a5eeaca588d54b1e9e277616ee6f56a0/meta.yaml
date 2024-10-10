@@ -1,0 +1,15 @@
+artifact_uri: file:///E:/dibimbing/Portfolio/Bank-Loan-Default-Prediction/mlruns/0/a5eeaca588d54b1e9e277616ee6f56a0/artifacts
+end_time: 1728566476083
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: a5eeaca588d54b1e9e277616ee6f56a0
+run_name: gregarious-swan-635
+run_uuid: a5eeaca588d54b1e9e277616ee6f56a0
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1728566467765
+status: 3
+tags: []
+user_id: juliu

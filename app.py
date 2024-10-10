@@ -16,7 +16,7 @@ def homePage():
 @app.route('/train',methods=['GET'])  # route to train the pipeline
 def training():
     os.system("python main.py")
-    return "Training Successful!" 
+    return render_template("train_success.html")
 
 
 @app.route('/predict',methods=['POST','GET']) # route to show the predictions in a web UI
@@ -71,7 +71,7 @@ def index():
 
         except Exception as e:
             print('The Exception message is: ',e)
-            return 'something is wrong'
+            return render_template("something_wrong.html")
 
     else:
         return render_template('index.html')
