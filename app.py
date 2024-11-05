@@ -54,7 +54,7 @@ def index():
        
          
             data = [LoanNr_ChkDgt, Name, City, State, Zip, Bank, BankState, NAICS, ApprovalDate, ApprovalFY, Term, NoEmp, NewExist, CreateJob, RetainedJob,
-                    FranchiseCode, UrbanRural, RevLineCr, LowDoc, ChgOffDate, DisbursementDate, DisbursementGross, BalanceGross, ChgOffPrinGr, GrAppv, SBA_Appv]
+                FranchiseCode, UrbanRural, RevLineCr, LowDoc, ChgOffDate, DisbursementDate, DisbursementGross, BalanceGross, ChgOffPrinGr, GrAppv, SBA_Appv]
             data = np.array(data).reshape(1, 26)
 
             config = ConfigurationManager()
